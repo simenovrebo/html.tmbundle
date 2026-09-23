@@ -42,7 +42,7 @@ if status == 2 # Errors
 
 elsif status == 1 # Warnings - use output but also display notification with warnings
   
-  log = File.read('/tmp/tm_tidy_errors').to_a.select do |line|
+  log = File.read('/tmp/tm_tidy_errors').lines.to_a.select do |line|
     ! (ENV['TM_SELECTED_TEXT'] and (line.include?('Warning: missing &lt;!DOCTYPE&gt; declaration') or line.include?("Warning: inserting missing 'title' element")))
   end.join rescue nil
   
